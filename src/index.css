@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light Theme (Default, True White) */
+:root {
+  color-scheme: light;
+  --color-bg-dark: #ffffff;
+  --color-bg-surface: #f3f4f6;
+  /* Gray-100 for slight contrast on cards/surfaces */
+  --color-primary: #0077b6;
+  --color-secondary: #f59e0b;
+  --color-text: #111827;
+  /* Darker near-black for better contrast on white */
+  --color-text-muted: #4b5563;
+  /* Gray-600 */
+  --color-white: #ffffff;
+}
+
+/* Dark Theme */
+html.dark-theme {
+  color-scheme: dark;
+  --color-bg-dark: #0a0a0a;
+  --color-bg-surface: #121212;
+  --color-primary: #00b4d8;
+  --color-secondary: #ffd700;
+  --color-text: #e0e0e0;
+  --color-text-muted: #a0a0a0;
+  --color-white: #ffffff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+/* Reduced Motion */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* High Contrast */
+html.high-contrast {
+  --color-text: #ffffff;
+  --color-text-muted: #e0e0e0;
+}
+
+html.high-contrast.light-theme {
+  --color-text: #000000;
+  --color-text-muted: #1f2937;
+}
+
+html.high-contrast .text-brand-text {
+  color: var(--color-text) !important;
+}
+
+html.high-contrast .text-brand-muted {
+  color: var(--color-text-muted) !important;
+}
+
+/* Font Size Settings */
+html[data-font-size="small"] {
+  font-size: 14px;
+}
+
+html[data-font-size="medium"] {
+  font-size: 16px;
+}
+
+html[data-font-size="large"] {
+  font-size: 18px;
+}
+
+body {
+  @apply bg-brand-dark text-brand-text font-sans antialiased overflow-x-hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-display tracking-tight text-brand-text;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-brand-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-surface rounded-full hover:bg-brand-primary;
+}
+
+/* Focus Styles for Accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-brand-primary ring-offset-2 ring-offset-brand-dark;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  @apply outline-none ring-2 ring-brand-primary ring-offset-2 ring-offset-brand-dark;
+}
+
+/* Custom Animations */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s ease-out forwards;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  @apply accent-brand-primary;
+}
+
+/* Selection colors */
+::selection {
+  @apply bg-brand-primary text-brand-dark;
+}
+
+/* Prose styling for markdown content */
+.prose {
+  @apply text-brand-text;
+}
+
+.prose strong {
+  @apply text-brand-primary font-semibold;
+}
+
+.prose code {
+  @apply bg-brand-dark px-2 py-0.5 rounded text-brand-secondary font-mono text-sm;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply text-white font-display;
+}
+
+.prose a {
+  @apply text-brand-primary hover:text-cyan-400 transition-colors;
+}
+
+.prose ul,
+.prose ol {
+  @apply space-y-2 my-4;
+}
+
+.prose li {
+  @apply text-brand-text;
+}
+
+/* Loading states */
+.skeleton {
+  @apply bg-brand-surface animate-pulse rounded;
+}
+
+/* Smooth page transitions */
+main {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Print styles */
+@media print {
+
+  header,
+  footer {
+    display: none;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+}
